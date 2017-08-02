@@ -1,0 +1,118 @@
+netstat -antp|grep sshd  ## find sshd to confirm that it's running
+
+sudo service ssh start|stop ## start/stop ssh service
+
+systemctl enable [service_name] ## enable service at boot
+
+##Find command with all matching patern
+find / -name sbd*
+
+## Find all commands with pattern and describe them
+find / -name sbd* -exec file {} \;
+
+##Persist services at boot
+update-rc ssh enable
+
+##Grepping with cut, get all href in an index.html and look for all http:// cut them to get domain name
+cat index.html | grep "href=" | cut -d"/" -f3| grep "cisco\.com" | cut -d'"' -f1 | sort -u ## remove dups
+
+## to write a bash script to look up host IP address in a file of domains
+
+for url in $(cat cisco.txt) do
+host $url | grep "has address" | cut -d" " -f4
+done
+
+## ncat (new version of nc) can be done below for a bind shell
+ncat -lvp 4444 -e cmd.exe --ssl --allow host_ip 
+
+--allow switch to protect the connection from unwanted connection, this is one of the advs from nc.
+
+
+PING SWEEP scan:
+
+nmap -sn 1.2.3.1-254 -oG output-to-file.txt
+
+Sweeping for common port:
+
+nmap -p 80 1.2.3.1-254 -oG output-to-file.txt
+
+NMAP Nmap Scripting Engine:
+
+Allow script to automate tasks
+
+NMAP Directories to note:
+
+/usr/share/nmap/scripts
+
+TCPDUMP: 
+
+Commands to filter like wireshark below.
+
+tcpdump -n src host 172.16.40.10 -r password_cracking_filtered.pcap  << filter by host IP
+tcpdump -n dst host 172.16.40.10 -r password_cracking_filtered.pcap << filter by dst IP
+tcpdump -n port 81 -r password_cracking_filtered.pcap  << filter only port 81
+
+NBTSCAN:
+
+A tool to scan for netbios information
+
+Metasploit:
+
+First connect to postgresql service before launching msfconsole
+
+hosts ## will contains all hosts scanned
+db_nmap [ip_cdr] --top-ports 20 ## scan a range of ip with top 20 ports and store in db
+services -p 443 ## will search database of all scanned hosts for specific ports
+
+Staged and Non-Staged payloads:
+
+Non-Staged payloads are ones that were sent by msf in its entirety. For instance, reverse_tcp payload on a SLMail 5.5 exploit.
+
+Staged are split into 2 parts:
+• First part is the "instructions" to the victim machine to tell it on where to connect back, which is the attacker's machine in most cases.
+• Meterpreter is a staged payloads because it provides additional capabilities.
+
+nbtscan 10.11.1.1-254
+
+ENUM4LINUX tool:
+
+Can be use to enumerate Windows server NULL SMB sessions.
+
+enum4linux -a 10.11.1.227
+
+SNMP  (UDP) scan:
+
+Using nmap to find all ips running SNMP on port 161 as follow:
+
+nmap -sU -p 161 ip-range
+
+BUFFER OVERFLOW:
+
+PATTERN_CREATE: A useful utility to generate random string patterns in MSF.
+
+pattern_create -l [lengh]
+
+PATTERN_OFFSET: A tool to calculate offset based on EIP value
+
+pattern_offset -q 12345678
+
+POST EXPLOITATION:
+
+Break out the "jail" shell:
+
+python -c 'import pty;pty.spawn("/bin/bash")'
+echo os.system('/bin/bash')
+/bin/sh -i
+
+﻿
+Favorite Language?
+Try invoking a SHELL through your favorite language:
+
+• python: exit_code = os.system('/bin/sh') output = os.popen('/bin/sh').read()
+• perl -e 'exec "/bin/sh";'
+• perl: exec "/bin/sh";
+• ruby: exec "/bin/sh"
+• lua: os.execute('/bin/sh')
+• irb(main:001:0> exec "/bin/sh"
+
+
