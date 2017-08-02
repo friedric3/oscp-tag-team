@@ -1,0 +1,44 @@
+Base on what were learned thus far, the Information gathering can be achieved as follow:
+
+1.  Starting with nmap scans using flags such as -sS, -sP, -P (for specific port or range), --open (for confirmed open ports).
+
+2.  Also run snmp-check [target] to get enumeration about the target. More particularly of the following interests:
+• List of users
+• List of software installed
+• Domain information
+• Processes
+• Services
+
+3.  Use other tools such as enum4linux is also helpful, OpenVAS scan (like Qualys), nbstat, etc. to find additional information about the target.
+
+4.  BRUTE FORCE using hydra on available service first with wordlists in /usr/share/seclists/, Passwords directory with 10k wordlist is a good starting point. There are also 10_million as well.
+
+STOP AND EVALUTE, need to enum more??
+
+4a.  Upon learning more about the target, using sites such as exploit-db to start mapping out what exploits can be used.
+
+5.  Start attacking with metasploit by using "use exploit/..."
+
+6.  MSF should reverse shell back during exploitation, however, if not spawn a handler to listen on incoming connection request using "use exploit/multi/handler" then set proper LHOST, LPORT.
+
+7.  Once shell is gained, using commands such as "run post/windows/gather/enum_xxx" for further enumeration about the target.
+
+8.  Using "search -f *.fileextension" via meterpreter is also helpful.
+
+9.  Also look to run concurrent exploits by backgrounding the current session the "use exploit/" again.
+
+10. For post exploitation, most often it is required to have an active exploited session. Use commands such as "sessions -l" to list and to interact use "sessions -i #" where # can be 1,2,3,etc.
+
+11. Continue enumerating until root/Admin is gained.
+
+12. Things to look for withing targets: 
+• software, 
+• registry (using reg -k HLKM to interact with registry), 
+• dump screenshot
+• Look at IE version and windows version
+• Look at processes running using "ps"
+• Using migrate command to investigate migrating into a higher privilege process
+• Also using exploits/windows/escalte/run_as can be another good one
+• Repeat step 4
+
+ 
