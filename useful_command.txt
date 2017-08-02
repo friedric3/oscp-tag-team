@@ -119,5 +119,6 @@ WEB SERVERS:
    b. gobuster -e - u http://10.11.1.x -w /usr/share/wordlists/dirb/common.txt
    c. use curl to create your own directory: curl -X MKCOL 'http://x.x.x.x/dirname'
 
-
-
+dirb http://host -X .txt,.php,.html ## Look for hidden files
+cadaver http://host/path/ ## if DAV is enabled, cadaver will provide a FTP like interface for easy access
+curl -i -X OPTIONS http://host ## to find HTTP methods allowed, look for PUT MOVE COPY etc...
