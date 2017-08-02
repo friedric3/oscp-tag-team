@@ -168,3 +168,5 @@ And rescan with nmap -sT -p- -A 192.168.0.10
 SQLmap for enumeration:
 
 sqlmap -o -u http://192.168.56.103:1337/978345210/index.php --forms --dbs --risk=3 --level=5
+
+nmap -sV -A -p- -T 4 [IP] ## Aggressive scan to look for 65000ish ports open to leave no ports behind. TCP ONLY 
