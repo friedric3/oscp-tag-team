@@ -103,7 +103,6 @@ Break out the "jail" shell:
 python -c 'import pty;pty.spawn("/bin/bash")'
 echo os.system('/bin/bash')
 /bin/sh -i
-
 ﻿
 Favorite Language?
 Try invoking a SHELL through your favorite language:
@@ -114,5 +113,11 @@ Try invoking a SHELL through your favorite language:
 • ruby: exec "/bin/sh"
 • lua: os.execute('/bin/sh')
 • irb(main:001:0> exec "/bin/sh"
+
+WEB SERVERS:
+   a. run nikto scan: nikto -h <ip>
+   b. gobuster -e - u http://10.11.1.x -w /usr/share/wordlists/dirb/common.txt
+   c. use curl to create your own directory: curl -X MKCOL 'http://x.x.x.x/dirname'
+
 
 
