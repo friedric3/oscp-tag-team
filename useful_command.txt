@@ -170,3 +170,13 @@ SQLmap for enumeration:
 sqlmap -o -u http://192.168.56.103:1337/978345210/index.php --forms --dbs --risk=3 --level=5
 
 nmap -sV -A -p- -T 4 [IP] ## Aggressive scan to look for 65000ish ports open to leave no ports behind. TCP ONLY 
+
+1) Start with a recon scan of the network to get an idea of the network:
+nmap -Pn -F -sSU -T5 -oX /root/10.1.1.1-254.xml 10.1.1.1-254 | grep -v 'filtered|closed' > /root/quick_recon.txt
+
+2) Then force-scan all ports UDP + TCP per host (takes about 4 minutes per host on a LAN or roughly 17 hours for 254 hosts):
+nmap -Pn -sSU -T4 -p1-65535 -oX /root/10.1.1.110.xml 10.1.1.110 | grep -v 'filtered|closed'
+
+3) Then run an intensive scan on the open ports per host, TCP and UDP separately to speed scan up:
+tcp: nmap -nvv -Pn -sSV -T1 -p$(cat 10.1.1.110.xml | grep portid | grep protocol=\"tcp\" | cut -d'"' -f4 | paste -sd "," -) --version-intensity 9 -oX /root/10.1.1.110-intense-tcp.xml 10.1.1.110
+udp: nmap -nvv -Pn -sUV -T1 -p$(cat 10.1.1.110.xml | grep portid | grep protocol=\"udp\" | cut -d'"' -f4 | paste -sd "," -) --version-intensity 9 -oX /root/10.1.1.110-intense-udp.xml 10.1.1.110
