@@ -180,3 +180,7 @@ nmap -Pn -sSU -T4 -p1-65535 -oX /root/10.1.1.110.xml 10.1.1.110 | grep -v 'filte
 3) Then run an intensive scan on the open ports per host, TCP and UDP separately to speed scan up:
 tcp: nmap -nvv -Pn -sSV -T1 -p$(cat 10.1.1.110.xml | grep portid | grep protocol=\"tcp\" | cut -d'"' -f4 | paste -sd "," -) --version-intensity 9 -oX /root/10.1.1.110-intense-tcp.xml 10.1.1.110
 udp: nmap -nvv -Pn -sUV -T1 -p$(cat 10.1.1.110.xml | grep portid | grep protocol=\"udp\" | cut -d'"' -f4 | paste -sd "," -) --version-intensity 9 -oX /root/10.1.1.110-intense-udp.xml 10.1.1.110
+
+
+# CROSS-COMPILING GCC on different versions of linux to avoid GLIBC errors
+gcc -m32 -Wl,--hash-style=both -o [binary_name] [source.c]
