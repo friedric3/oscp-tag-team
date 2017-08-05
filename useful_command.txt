@@ -117,7 +117,8 @@ Try invoking a SHELL through your favorite language:
 WEB SERVERS:
    a. run nikto scan: nikto -h <ip>
    b. gobuster -e - u http://10.11.1.x -w /usr/share/wordlists/dirb/common.txt
-   c. use curl to create your own directory: curl -X MKCOL 'http://x.x.x.x/dirname'
+   c. gobuster -u http://10.11.1.x -w /usr/share/seclists/Discovery/Web_Content/common.txt   -s '200,204,301,302,307,403,500' -e
+   d. use curl to create your own directory: curl -X MKCOL 'http://x.x.x.x/dirname'
 
 dirb http://host -X .txt,.php,.html ## Look for hidden files
 cadaver http://host/path/ ## if DAV is enabled, cadaver will provide a FTP like interface for easy access
