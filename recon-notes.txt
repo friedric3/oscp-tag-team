@@ -41,4 +41,11 @@ STOP AND EVALUTE, need to enum more??
 • Also using exploits/windows/escalte/run_as can be another good one
 • Repeat step 4
 
+13. For hosts with web servers:
+   a. run nikto scan: nikto -h <ip>
+   b. gobuster -e - u http://10.11.1.x -w /usr/share/wordlists/dirb/common.txt
+
+14. Exploit misconfigured NFS shares: https://www.computersecuritystudent.com/SECURITY_TOOLS/METASPLOITABLE/EXPLOIT/lesson4/index.html
+
+
  
