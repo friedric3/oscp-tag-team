@@ -9,7 +9,7 @@
 .49*
 .71*
 .73*
-.125
+.125 (fully rooted with metasploit)
 .128
 .217
 .227
