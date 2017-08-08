@@ -16,3 +16,4 @@
 .234
 
 .72 (tough one but learned a lot)
+.116 (easy one to get and root because a couple of vulnerable web apps)
