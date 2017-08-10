@@ -17,7 +17,7 @@
 
 .72 (tough one but learned a lot)
 .116 (easy one to get and root because a couple of vulnerable web apps)
-.202 (oracle server)
+.202 (oracle server via msf, will revisit with manual exploit later)
 .251 (not on student network, but a bridge into 10.1.1.0/24 network)
 
 Other internal network:
