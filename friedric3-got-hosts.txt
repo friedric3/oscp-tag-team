@@ -17,8 +17,10 @@
 
 .72 (tough one but learned a lot)
 .116 (easy one to get and root because a couple of vulnerable web apps)
+
 .202 (oracle server via msf, will revisit with manual exploit later)
-.251 (not on student network, but a bridge into 10.1.1.0/24 network)
+.209 (spinbike, you should take a look at this one. It's right in your powerhouse, should be under 15 minutes to root)
+.251 (not on list, but a bridge into 10.1.1.0/24 network. I'm glad I came across this IP. There might be more.)
 
 Other internal network:
 
