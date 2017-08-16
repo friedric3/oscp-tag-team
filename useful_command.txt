@@ -185,3 +185,6 @@ udp: nmap -nvv -Pn -sUV -T1 -p$(cat 10.1.1.110.xml | grep portid | grep protocol
 
 # CROSS-COMPILING GCC on different versions of linux to avoid GLIBC errors
 gcc -m32 -Wl,--hash-style=both -o [binary_name] [source.c]
+
+cadaver http://
+davtest http://
